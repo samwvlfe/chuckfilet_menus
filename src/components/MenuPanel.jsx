@@ -1,4 +1,4 @@
-export default function MenuPanel({ title, itemCount, nextLabel, onNext, children }) {
+export default function MenuPanel({ title, itemCount, nextLabel, onNext, hideContinue = false, children }) {
   return (
     <>
       <div className="menu-heading">
@@ -7,11 +7,11 @@ export default function MenuPanel({ title, itemCount, nextLabel, onNext, childre
       </div>
       <div className="menu-grid" role="tabpanel">
         {children}
-        <article className="menu-item next-menu-item">
+        {!hideContinue && <article className="menu-item next-menu-item">
           <div className="menu-item-name">Continue</div>
           <div className="menu-item-price">{nextLabel ? `Next: ${nextLabel}` : 'Ready'}</div>
           <button className="menu-item-action" type="button" onClick={onNext} disabled={!nextLabel}>{nextLabel ? 'Continue' : 'Complete'}</button>
-        </article>
+        </article>}
       </div>
     </>
   );
